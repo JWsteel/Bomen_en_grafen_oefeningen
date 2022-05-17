@@ -3,6 +3,8 @@ package ui;
 
 import domain.Graph;
 
+import java.util.Arrays;
+
 public class uiOefeningPunt1 {
 
 	public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class uiOefeningPunt1 {
 		
 		Graph g = new Graph(m);
 		
-		System.out.println(g.berekenPaden(3));
+		System.out.println(Arrays.deepToString(g.initMatrixDijkstra(3)));
 		
 		
 	}

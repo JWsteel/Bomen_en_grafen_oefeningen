@@ -19,9 +19,18 @@ public class Graph {
     }
 
 
-	private int[][] initMatrixDijkstra(int vanKnoop) {
+	public int[][] initMatrixDijkstra(int vanKnoop) {
 		// laatste rij is rij met kortste lengtes vanuit vanKnoop
 		int[][] res = new int[this.gewichtenMatrix.length + 1][this.gewichtenMatrix.length];
+		for(int i =0; i<this.gewichtenMatrix.length;i++){
+			for(int j=0; j<this.gewichtenMatrix.length;j++){
+				res[i][j]=gewichtenMatrix[i][j];
+			}
+		}
+		for(int i=0;i<this.gewichtenMatrix.length;i++){
+			res[i][vanKnoop-1]=0;
+			res[gewichtenMatrix.length][i]=Integer.MAX_VALUE;
+		}
 
 		// oefening 9.3
 

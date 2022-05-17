@@ -1,6 +1,8 @@
 package domain;
 
-public class BinaryTree<E>{
+import java.util.ArrayList;
+
+public abstract class BinaryTree<E>{
 	E data;
 	BinaryTree<E> leftTree, rightTree;
 	
@@ -23,7 +25,15 @@ public class BinaryTree<E>{
 			if (this.rightTree != null) this.rightTree.printInorder();
 	}
 
-
+	public boolean isLeaf(){
+		return this.leftTree==null && this.rightTree==null;
+	}
+	public int countNodes(){
+		int aantal=1;
+		if(this.leftTree !=null) aantal+=this.leftTree.countNodes();
+		if(this.rightTree != null) aantal+=this.rightTree.countNodes();
+		return aantal;
+	}
 	//*ONDERSTAANDE METHODES NIET IMPLEMENTEREN! DEZE MOETEN GEIMPLEMENTEERD WORDEN IN DE BinarySearchTree file!*//
 	boolean lookup(E data) {
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
@@ -44,5 +54,11 @@ public class BinaryTree<E>{
 	E searchGreatest(){
 		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
 	}
+
+	void cleanUp(){
+		throw new UnsupportedOperationException("Should not be implemented, implement in BinarySearchTree file");
+	}
+
+	public abstract ArrayList<E> getPath(E data);
 
 }

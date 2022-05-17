@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -23,9 +24,9 @@ public class Graph {
             if (matrix[i][i] != 0)
                 return false;
 
-        for (int i = 0; i < matrix.length; i++)
+        for (int[] ints : matrix)
             for (int j = 0; j < matrix.length; j++)
-                if (matrix[i][j] != 0 && matrix[i][j] != 1)
+                if (ints[j] != 0 && ints[j] != 1)
                     return false;
         return true;
     }
@@ -46,9 +47,20 @@ public class Graph {
         Queue<Integer> queue = new LinkedList<>();
         // https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Queue.html
         queue.add(start);
-        ancestors[start - 1] = 0;
+        ancestors[start-1] = 0;
+        while(!queue.isEmpty()){
+            int current = queue.remove();
+            for(int i = 0; i<getAantalKnopen(); ++i){
+                if(verbindingsMatrix[current-1][i]==1 && ancestors[i]==infty){
+                    queue.add(i+1);
+                    ancestors[i]=current;
+                }
+            }
+        }
 
-        // oefening 1.4
+
+        // oefening 7.3
+
 
         return ancestors;
     }
@@ -60,8 +72,16 @@ public class Graph {
         int[] ancestors = this.findAncestors(start, destination);
         List<Integer> path = new LinkedList<>();
 
-        // oefening 1.5
-
+        // oefening 7.4
+        int current = ancestors[destination-1];
+        while (current!=0 && current!=infty){
+            path.add(0,destination);
+            destination=current;
+            current=ancestors[destination-1];
+        }
+        if(current==0){
+            path.add(0, destination);
+        }
         return path;
 
     }

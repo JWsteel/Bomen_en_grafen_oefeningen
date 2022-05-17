@@ -25,6 +25,11 @@ public class BinarySearchTreeDriver {
 			System.out.println();
 			System.out.println("De grootste waarde uit deze boom = " + boom.searchGreatest());
 			System.out.println("De kleinste waarde uit deze boom = " + boom.searchSmallest());
+			System.out.println(boom.countNodes());
+			System.out.println(boom.lookup(5));
+			boom.removeNode(5);
+			boom.cleanUp();
+			boom.printInorder();
 		}
 
 
